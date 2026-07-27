@@ -1,9 +1,9 @@
-import React from 'react'
+import FoodCart from "@/components/food/food_cart"
 
 export default function page() {
   return (
     <div>
-      cart
+      <FoodCart />
     </div>
   )
 }

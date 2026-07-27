@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
@@ -10,21 +9,20 @@ import { Badge } from "@/components/ui/badge";
 export default async function RoomsPage() {
   const supabase = await createClient();
 
-  const { data: rooms } = await supabase
-    .from("rooms")
-    .select("*");
-
+  const { data: rooms, error } = await supabase.from("rooms").select("*");
+  if (error) {
+    console.log(error);
+    throw error;
+  }
+  console.log(rooms);
   return (
     <main className="mx-auto w-full border-2 px-10 md:px-20 py-12">
-
       {/* Header */}
       <div className="mb-10 text-center">
-        <h1 className="text-4xl font-bold">
-          ห้องพักของเรา
-        </h1>
+        <h1 className="text-4xl font-bold">ห้องพักของเรา</h1>
 
         <p className="mt-3 text-muted-foreground">
-          เลือกห้องพักที่เหมาะกับการพักผ่อนของคุณ
+          เลือกประสบการณ์การพักผ่อนของคุณ
         </p>
       </div>
 
@@ -33,48 +31,72 @@ export default async function RoomsPage() {
         {rooms?.map((room) => (
           <Card
             key={room.id}
-            className=" overflow-hidden  duration-300 hover:-translate-y-1 hover:shadow-xl"
+            className="p-0 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-slate-200 flex flex-col justify-between"
           >
-            <div className=" relative h-64 w-full border-red-600 border-2 mt-0 pt-0">
-              <Image
-                src={room.room_main_img}
-                alt={room.room_name}
-                fill
-                className="object-cover py-0 mx-0 border-2"
-              />
+            <div>
+              {/* 1. 🖼️ รูปภาพเต็มชิดขอบการ์ดด้านบน */}
+              <div className="relative h-60 w-full overflow-hidden bg-slate-100">
+                <Image
+                  src={room.room_main_img}
+                  alt={room.room_name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+
+              {/* 2. 📝 ชื่อ รายละเอียด และราคา */}
+              <CardContent className="p-5">
+                <div className="flex justify-between items-start gap-4">
+                  {/* ซ้าย: ชื่อห้อง + รายละเอียดใต้ชื่อ (ตัวหนังสือสีเทา) */}
+                  <div className="space-y-1.5 flex-1">
+                    <h3 className="text-xl font-bold text-slate-800 line-clamp-1">
+                      {room.room_name}
+                    </h3>
+                    <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed">
+                      {room.room_description_short}
+                    </p>
+                  </div>
+
+                  {/* ขวา: ราคาขวาสุด */}
+                  {/* <div>
+                    <div className="text-right flex items-baseline whitespace-nowrap pt-0.5">
+                      <div className=" pr-3 text-sm ml-2 text-slate-400 font-medium">
+                        มี.ค - ก.ย
+                      </div>
+                      <div className="text-2xl font-extrabold text-yellow-500">
+                        ฿{room.room_low_price}
+                      </div>
+                      <div className="text-sm ml-2 text-slate-400 font-medium">
+                        / คืน
+                      </div>
+                    </div>
+                    <div className="text-right flex items-baseline whitespace-nowrap pt-0.5">
+                      <div className=" pr-3 text-sm ml-2 text-slate-400 font-medium">
+                        ต.ค - ก.พ
+                      </div>
+                      <div className="text-2xl font-extrabold text-yellow-500">
+                        ฿{room.room_high_price}
+                      </div>
+                      <div className="text-sm ml-2 text-slate-400 font-medium">
+                        / คืน
+                      </div>
+                    </div>
+                  </div> */}
+                </div>
+              </CardContent>
             </div>
 
-            <CardContent className="flex justify-between">
-              <div>
-                <h2 className="text-xl font-semibold">
-                  {room.room_name}
-                </h2>
-              </div>
-
-              <div>
-                <p className="text-2xl font-bold">
-                  ฿{room.room_price ? room.room_price: 1000}
-                  <span className="text-sm font-normal text-muted-foreground">
-                    {" "}
-                    / คืน
-                  </span>
-                </p>
-              </div>
-            </CardContent>
-
-            <CardFooter className="gap-3">
-              <Button
-                variant="outline"
-                className="flex-1"
-              >
-                <Link href={`/rooms/${room.id}`}>
-                  รายละเอียด
-                </Link>
-              </Button>
+            {/* 3. 🔘 ปุ่มรายละเอียดด้านล่างการ์ด */}
+            <CardFooter className="p-5 pt-0 flex items-center justify-center ">
+              <Link href={`/rooms/${room.id}`} className="m-0 mt-4">
+                <Button className="w-full h-11 bg-yellow-300 text-black cursor-pointer hover:bg-yellow-400 hover:text-black transition-all font-medium rounded-xl">
+                  ดูรายละเอียดห้องพัก
+                </Button>
+              </Link>
             </CardFooter>
           </Card>
         ))}
-
       </div>
     </main>
   );

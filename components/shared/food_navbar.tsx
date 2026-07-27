@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { Menu, ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
@@ -50,29 +50,31 @@ export default function Navbar() {
 
         {/* ปุ่มแฮมเบอร์เกอร์เมนู */}
         <div className="flex items-center shrink-0">
-          <button
-            type="button"
-            className="flex p-3 touch-manipulation text-heading active:scale-95 relative z-50 md:hidden"
-            onClick={() => setIsOpen(true)}
-          >
-            {/* ใส่ pointer-events-none บังคับให้นิ้วทะลุโดนปุ่ม 100% ไม่ติดเส้น SVG */}
-            <p className="mr-2">{totalCount}</p>
-            <Menu className="w-6 h-6 pointer-events-none" />
-          </button>
+          <Link href={`/food_order/${token}/cart`}>
+            <button
+              type="button"
+              className="flex p-3 touch-manipulation text-heading active:scale-95 relative z-50 md:hidden"
+            >
+              {/* ใส่ pointer-events-none บังคับให้นิ้วทะลุโดนปุ่ม 100% ไม่ติดเส้น SVG */}
+              <p className="mr-2">{totalCount}</p>
+              {/* <Menu className="w-6 h-6 pointer-events-none" /> */}
+              <ShoppingCart className="w-6 h-6 pointer-events-none" />
+            </button>
+          </Link>
         </div>
 
         {/* Overlay (ฉากหลังโปร่งแสง) - เปิดใช้งานและสลับ pointer-events */}
-        <div
+        {/* <div
           onClick={() => setIsOpen(false)}
           className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-all duration-300 z-40 ${
             isOpen
               ? "opacity-100 pointer-events-auto visible"
               : "opacity-0 pointer-events-none invisible"
           }`}
-        />
+        /> */}
 
         {/* Drawer Menu (เมนูด้านข้าง) - เลื่อนเข้า-ออกอย่างสมูท */}
-        <div
+        {/* <div
           className={`fixed top-0 right-0 h-screen w-80 bg-white shadow-2xl z-50 p-6 
           transition-transform duration-300 ease-in-out ${
             isOpen ? "translate-x-0" : "translate-x-full"
@@ -106,16 +108,16 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="block py-1 hover:text-fg-brand"
                 >
-                  cart
+                  cart 
                 </Link>
                 <p>{totalCount}</p>
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
 
         {/* Desktop Menu */}
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+        {/* <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary items-center">
             <li>
               <Link
@@ -130,11 +132,11 @@ export default function Navbar() {
                 href={`/food_order/${token}/cart`}
                 className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0"
               >
-                cart
+                cart {totalCount}
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </nav>
   );

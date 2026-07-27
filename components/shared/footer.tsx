@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaGithub, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Button } from "../ui/button";
+import { Phone } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -12,41 +14,30 @@ export default function Footer() {
         </p>
 
         {/* Right */}
-        <div className="flex items-center gap-6">
+        <div className="box flex items-center gap-6">
           <Link
-            href="#"
+            href="https://www.facebook.com/PhuromShang/"
+            target="_blank"
             className="text-gray-500 transition hover:text-gray-900"
           >
-            <FaFacebook size={22} />
+            <Button variant={"outline"}>
+              <FaFacebook size={22} />
+            </Button>
           </Link>
-
           <Link
-            href="#"
+            href="tel:0637985553"
             className="text-gray-500 transition hover:text-gray-900"
           >
-            <FaInstagram size={22} />
+            <Button variant={"outline"}>
+              <Phone size={22} className="w-4 h-4" />
+            </Button>
           </Link>
-
-          <Link
-            href="#"
-            className="text-gray-500 transition hover:text-gray-900"
-          >
-            <FaXTwitter size={22} />
-          </Link>
-
-          <Link
-            href="#"
-            className="text-gray-500 transition hover:text-gray-900"
-          >
-            <FaGithub size={22} />
-          </Link>
-
-          <Link
+          {/* <Link
             href="#"
             className="text-gray-500 transition hover:text-gray-900"
           >
             <FaYoutube size={22} />
-          </Link>
+          </Link> */}
         </div>
       </div>
     </footer>

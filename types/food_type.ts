@@ -5,5 +5,14 @@ interface Food_type {
     food_name:string,
     food_price:number,
 }
-
-export type {Food_type}
+interface Room_type {
+  id: string;
+  room_name: string;
+  room_main_img: string;
+  room_gallery_img: string[]; // 👈 บอก TypeScript ชัดเจนว่าเป็น Array ของ string
+  room_price: number;
+  room_high_price:string;
+  room_low_price:string;
+  room_service: string[];
+}
+export type {Food_type,Room_type}
