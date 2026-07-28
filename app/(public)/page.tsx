@@ -68,7 +68,7 @@ export default function Home() {
         {/* Banner */}
         <div className="relative h-screen overflow-hidden">
           <Image
-            src="https://oxemxjxvyymejjxcubxo.supabase.co/storage/v1/object/public/purom_sang_img/1.jpg"
+            src="https://monvsxbkhlvlhiacdmnc.supabase.co/storage/v1/object/public/rooms/main_img/home_page.jpg"
             alt="ภูร่มแสง ที่พักรายวันใกล้ม่อนแจ่ม บรรยากาศธรรมชาติ" // ⚠️ alt ที่มี Keyword ชัดเจน
             priority
             fill
