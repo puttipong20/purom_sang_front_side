@@ -34,7 +34,7 @@ export default function layout() {
         </div>
         <div className="w-full md:w-1/2  flex justify-center md:justify-end">
           <Image
-            src="https://oxemxjxvyymejjxcubxo.supabase.co/storage/v1/object/public/purom_sang_img/1.jpg"
+            src="https://monvsxbkhlvlhiacdmnc.supabase.co/storage/v1/object/public/rooms/other_img/1.jpg"
             width={500}
             height={500}
             alt="purom_sang_1"
@@ -45,7 +45,7 @@ export default function layout() {
       <div className=" flex border-2 bg-[#e8d9cd] flex-col md:flex-row">
         <div className="w-full md:w-1/2  flex justify-center md:justify-end">
           <Image
-            src="https://oxemxjxvyymejjxcubxo.supabase.co/storage/v1/object/public/purom_sang_img/2.jpg"
+            src="https://monvsxbkhlvlhiacdmnc.supabase.co/storage/v1/object/public/rooms/other_img/2.jpg"
             width={500}
             height={500}
             alt="purom_sang_1"
@@ -68,7 +68,7 @@ export default function layout() {
       <div className=" flex border-2 bg-[#e8d9cd] flex-col md:flex-row">
         <div className="w-full md:w-1/2  flex justify-center md:justify-end">
           <Image
-            src="https://oxemxjxvyymejjxcubxo.supabase.co/storage/v1/object/public/purom_sang_img/3.jpg"
+            src="https://monvsxbkhlvlhiacdmnc.supabase.co/storage/v1/object/public/rooms/other_img/3.jpg"
             width={500}
             height={500}
             alt="purom_sang_1"
@@ -77,7 +77,7 @@ export default function layout() {
         </div>
         <div className="w-full md:w-1/2  flex justify-center md:justify-end">
           <Image
-            src="https://oxemxjxvyymejjxcubxo.supabase.co/storage/v1/object/public/purom_sang_img/4.jpg"
+            src="https://monvsxbkhlvlhiacdmnc.supabase.co/storage/v1/object/public/rooms/other_img/4.jpg"
             width={500}
             height={500}
             alt="purom_sang_1"
