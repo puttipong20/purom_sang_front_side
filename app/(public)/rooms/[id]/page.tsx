@@ -110,7 +110,7 @@ export default async function DetailPage({ params }: Props) {
               </div>
               <div className="flex items-baseline gap-2 bg-slate-50 p-4 rounded-xl border border-slate-100">
                 <div className=" pr-3 text-sm ml-2 text-slate-400 font-medium">
-                  มี.ค - ก.ย
+                  ต.ค - ก.พ
                 </div>
                 <span className="text-3xl font-extrabold text-yellow-500">
                   ฿{room.room_high_price}
